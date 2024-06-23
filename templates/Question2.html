@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Question2</title>
+    <link href="../static/Question2Style.css " rel="stylesheet">
+
+</head>
+<body>
+
+<div class="NavBar">
+    <div class="title_logo">
+        <img class="logo" src="../static/images/signal-tower.png">
+        <h1>Question2: Analyze OFDMA Transmission Parameters </h1>
+    </div>
+    </div>
+<div class="sideNav">
+
+    <ul>
+  <li>
+            <a class="Home" href="{{ url_for('operations') }}">
+            <img src="../static/images/home.png"><p>Home</p>
+            </a>
+        </li>
+
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question1') }}">
+            <img src="../static/images/number-1.png"><p>Question1</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav"  href="{{ url_for('question2') }}">
+            <img src="../static/images/number-2.png"><p>Question2</p>
+        </a>
+        </li>
+
+        <li>
+             <a class="linksSideNav"  href="{{ url_for('question3') }}">
+            <img src="../static/images/number-3.png"><p>Question3</p>
+             </a>
+        </li>
+
+        <li>
+                         <a class="linksSideNav"  href="{{ url_for('question4') }}">
+            <img src="../static/images/number-4.png"><p>Question4</p>
+                             </a>
+        </li>
+
+        <li>
+                                     <a class="linksSideNav"  href="{{ url_for('question5') }}">
+
+            <img src="../static/images/number-5.png"><p>Question5</p>
+                                          </a>
+        </li>
+
+    </ul>
+</div>
+<div class="container">
+<div class="inputBoxes">
+<form class="input_Label" action="{{ url_for('question2') }}" method="post">
+    <div class="label1">
+        <label for="bandwidth_rb">Bandwidth of Each Resource Block:</label>
+    <input type="text" id="bandwidth_rb" name="bandwidth_rb" value="{{ request.form.get('bandwidth_rb', '') }}" pattern="^\s*\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <input type="radio" id="bandwidth_rb_khz" name="bandwidth_rb_unit" value="kHz" {% if request.form.get('bandwidth_rb_unit') == 'kHz' %}checked{% endif %} required>
+        <label for="bandwidth_rb_khz">kHz</label>
+        <input type="radio" id="bandwidth_rb_hz" name="bandwidth_rb_unit" value="Hz" {% if request.form.get('bandwidth_rb_unit') == 'Hz' %}checked{% endif %}>
+        <label for="bandwidth_rb_hz">Hz</label>
+    </div><br>
+</div>
+    <div class="label2">
+        <label for="subcarrier_spacing">Subcarrier Spacing:</label>
+        <input type="text" id="subcarrier_spacing" name="subcarrier_spacing" value="{{ request.form.get('subcarrier_spacing', '') }}" pattern="^\s*\d*\.?\d*\s*$" required>
+        <div class="radio-buttons">
+        <input type="radio" id="subcarrier_spacing_khz" name="subcarrier_spacing_unit" value="kHz" {% if request.form.get('subcarrier_spacing_unit') == 'kHz' %}checked{% endif %} required>
+        <label for="subcarrier_spacing_khz">kHz</label>
+        <input type="radio" id="subcarrier_spacing_hz" name="subcarrier_spacing_unit" value="Hz" {% if request.form.get('subcarrier_spacing_unit') == 'Hz' %}checked{% endif %}>
+        <label for="subcarrier_spacing_hz">Hz</label>
+    </div><br>
+</div>
+    <div class="label3">
+         <label for="num_ofdm_symbols">Number of OFDM Symbols per Resource Block:</label>
+        <input type="text" id="num_ofdm_symbols" name="num_ofdm_symbols" value="{{ request.form.get('num_ofdm_symbols', '') }}" pattern="^\s*\d+\s*$" required><br>
+    </div>
+<div class="label4">
+    <label for="duration_rb">Duration of Each Resource Block:</label>
+    <input type="text" id="duration_rb" name="duration_rb" value="{{ request.form.get('duration_rb', '') }}" pattern="^\s*\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <input type="radio" id="milliseconds" name="duration_rb_unit" value="milliseconds" {% if request.form.get('duration_rb_unit') == 'milliseconds' %}checked{% endif %} required>
+        <label for="milliseconds">msec</label>
+        <input type="radio" id="seconds" name="duration_rb_unit" value="seconds" {% if request.form.get('duration_rb_unit') == 'seconds' %}checked{% endif %}>
+        <label for="seconds">sec</label>
+    </div><br>
+ </div>
+<div class="label5">
+ <label for="modulation_order">Modulation Order (e.g., 1024 for 1024-QAM):</label>
+        <input type="text" id="modulation_order" name="modulation_order" value="{{ request.form.get('modulation_order', '') }}" pattern="^\s*\d+\s*$" required><br>
+
+</div>
+    <div class="label6">
+  <label for="num_parallel_rb">Number of Parallel Resource Blocks:</label>
+        <input type="text" id="num_parallel_rb" name="num_parallel_rb" value="{{ request.form.get('num_parallel_rb', '') }}" pattern="^\s*\d+\s*$" required><br>
+
+</div>
+        <button  class="calculateButton" type="submit"><p>Calculate</p></button>
+    </form>
+</div>
+<div class="AnswerBox">
+    <div class="Header">
+    <h1>
+        <strong>
+        <em>
+      Answer box:
+            </em>
+            </strong>
+    </h1>
+        </div>
+    <div class="results">
+    {% if results %}
+        <h2>Results</h2>
+        <ul>
+            {% for key, value in results.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+        </div>
+</div>
+    </div>
+</body>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Question4</title>
+    <link href="../static/Question4Style.css " rel="stylesheet">
+
+</head>
+<body>
+
+<div class="NavBar">
+    <div class="title_logo">
+        <img class="logo" src="../static/images/signal-tower.png">
+        <h1>Question4: Assess Multiple Access Throughput </h1>
+    </div>
+    </div>
+<div class="sideNav">
+
+    <ul>
+  <li>
+            <a class="Home" href="{{ url_for('operations') }}">
+            <img src="../static/images/home.png"><p>Home</p>
+            </a>
+        </li>
+
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question1') }}">
+            <img src="../static/images/number-1.png"><p>Question1</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav"  href="{{ url_for('question2') }}">
+            <img src="../static/images/number-2.png"><p>Question2</p>
+        </a>
+        </li>
+
+        <li>
+             <a class="linksSideNav"  href="{{ url_for('question3') }}">
+            <img src="../static/images/number-3.png"><p>Question3</p>
+             </a>
+        </li>
+
+        <li>
+                         <a class="linksSideNav"  href="{{ url_for('question4') }}">
+            <img src="../static/images/number-4.png"><p>Question4</p>
+                             </a>
+        </li>
+
+        <li>
+                                     <a class="linksSideNav"  href="{{ url_for('question5') }}">
+
+            <img src="../static/images/number-5.png"><p>Question5</p>
+                                          </a>
+        </li>
+
+    </ul>
+</div>
+<div class="container">
+<div class="inputBoxes">
+<form class="input_Label" action="{{ url_for('question4') }}" method="post">
+    <div class="label1">
+       <label for="mac_type">Type of MAC Layer:</label>
+        <select id="mac_type" name="mac_type" required>
+            <option value="unslotted_nonpersistent" {% if form_data.get('mac_type') == 'unslotted_nonpersistent' %}selected{% endif %}>Unslotted Nonpersistent CSMA</option>
+            <option value="slotted_nonpersistent" {% if form_data.get('mac_type') == 'slotted_nonpersistent' %}selected{% endif %}>Slotted Nonpersistent CSMA</option>
+            <option value="unslotted_1_persistent" {% if form_data.get('mac_type') == 'unslotted_1_persistent' %}selected{% endif %}>Unslotted 1-persistent CSMA</option>
+            <option value="slotted_1_persistent" {% if form_data.get('mac_type') == 'slotted_1_persistent' %}selected{% endif %}>Slotted 1-persistent CSMA</option>
+        </select><br>
+</div>
+    <div class="label2">
+    <label for="bandwidth">Data Transmission Bandwidth:</label>
+        <input type="text" id="bandwidth" name="bandwidth" value="{{ form_data.get('bandwidth', '') }}" pattern="^\s*\d*\.?\d*\s*$" required>
+        <select name="bandwidth_unit" id="bw">
+            <option value="bps" {% if form_data.get('bandwidth_unit') == 'bps' %}selected{% endif %}>bps</option>
+            <option value="kbps" {% if form_data.get('bandwidth_unit') == 'kbps' %}selected{% endif %}>Kbps</option>
+            <option value="Mbps" {% if form_data.get('bandwidth_unit') == 'Mbps' %}selected{% endif %}>Mbps</option>
+        </select><br>
+</div>
+    <div class="label3">
+         <label for="prop_time">Maximum Signal Propagation Time:</label>
+        <input type="text" id="prop_time" name="prop_time" value="{{ form_data.get('prop_time', '') }}" pattern="^\s*\d*\.?\d*\s*$" required>
+        <select name="prop_time_unit" id="prop">
+            <option value="sec" {% if form_data.get('prop_time_unit') == 'sec' %}selected{% endif %}>seconds</option>
+            <option value="msec" {% if form_data.get('prop_time_unit') == 'msec' %}selected{% endif %}>milliseconds</option>
+            <option value="usec" {% if form_data.get('prop_time_unit') == 'usec' %}selected{% endif %}>microseconds</option>
+        </select><br>
+    </div>
+<div class="label4">
+    <label for="frame_size">Frame Size:</label>
+    <input type="text" id="frame_size" name="frame_size" value="{{ form_data.get('frame_size', '') }}" pattern="^\s*\d+\s*$" required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="frame_size_unit" value="bit" {% if form_data.get('frame_size_unit') == 'bit' %}checked{% endif %}>
+            bit
+        </label>
+        <label>
+            <input type="radio" name="frame_size_unit" value="kbit" {% if form_data.get('frame_size_unit') == 'kbit' %}checked{% endif %}>
+            Kbit
+        </label>
+    </div>
+    <br>
+</div>
+
+<div class="label5">
+    <label for="frame_rate">Frame Rate:</label>
+    <input type="text" id="frame_rate" name="frame_rate" value="{{ form_data.get('frame_rate', '') }}" pattern="^\s*\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="frame_rate_unit" value="fps" {% if form_data.get('frame_rate_unit') == 'fps' %}checked{% endif %}>
+            fps
+        </label>
+        <label>
+            <input type="radio" name="frame_rate_unit" value="kfps" {% if form_data.get('frame_rate_unit') == 'kfps' %}checked{% endif %}>
+            Kfps
+        </label>
+    </div>
+    <br>
+</div>
+
+
+
+        <button  class="calculateButton" type="submit"><p>Calculate</p></button>
+    </form>
+</div>
+<div class="AnswerBox">
+    <div class="Header">
+    <h1>
+        <strong>
+        <em>
+      Answer box:
+            </em>
+            </strong>
+    </h1>
+        </div>
+    <div class="results">
+    {% if results %}
+        <h2>Results</h2>
+        <ul>
+            {% for key, value in results.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+        </div>
+</div>
+    </div>
+</body>

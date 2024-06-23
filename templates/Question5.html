@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Question3</title>
+    <link href="../static/Question5Style.css " rel="stylesheet">
+<!--for negative and positive-->
+<!--pattern="^\s*-?\d*\.?\d*\s*$"-->
+<!--for positive -->
+<!--pattern="^\s*\d*\.?\d*\s*$"-->
+</head>
+<body>
+
+<div class="NavBar">
+    <div class="title_logo">
+        <img class="logo" src="../static/images/signal-tower.png">
+        <h1>Question5: Design of Cellular System</h1>
+    </div>
+    </div>
+<div class="sideNav">
+
+    <ul>
+  <li>
+            <a class="Home" href="{{ url_for('operations') }}">
+            <img src="../static/images/home.png"><p>Home</p>
+            </a>
+        </li>
+
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question1') }}">
+            <img src="../static/images/number-1.png"><p>Question1</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav"  href="{{ url_for('question2') }}">
+            <img src="../static/images/number-2.png"><p>Question2</p>
+        </a>
+        </li>
+
+        <li>
+             <a class="linksSideNav"  href="{{ url_for('question3') }}">
+            <img src="../static/images/number-3.png"><p>Question3</p>
+             </a>
+        </li>
+
+        <li>
+                         <a class="linksSideNav"  href="{{ url_for('question4') }}">
+            <img src="../static/images/number-4.png"><p>Question4</p>
+                             </a>
+        </li>
+
+        <li>
+                                     <a class="linksSideNav"  href="{{ url_for('question5') }}">
+
+            <img src="../static/images/number-5.png"><p>Question5</p>
+                                          </a>
+        </li>
+
+    </ul>
+</div>
+<div class="container">
+<div class="inputBoxes">
+<form class="input_Label" action="{{ url_for('question5') }}" method="post">
+    <div class="label1">
+        <label for="area">Area of the city:</label>
+<input type="text" id="area" name="area" value="{{ request.form.area if request.form else '' }}" pattern="^\s*\d*\.?\d*\s*$" required>
+
+<div class="radio-buttons">
+    <input type="radio" id="km2" name="area_unit" value="km2" {% if request.form.area_unit == 'km2' %}checked{% endif %} required>
+    <label for="km2">km²</label>
+
+    <input type="radio" id="m2" name="area_unit" value="m2" {% if request.form.area_unit == 'm2' %}checked{% endif %} >
+    <label for="m2">m²</label>
+</div>
+            </div>
+
+    <div class="label2">
+      <label for="subscribers">Number of subscribers:</label>
+        <input type="text" id="subscribers" name="subscribers" value="{{ request.form.subscribers if request.form else '' }}" pattern="^\s*\d+\s*$" required><br>
+</div>
+
+    <div class="label3">
+     <label for="calls_per_day">Average number of calls per time period:</label>
+        <input type="text" id="calls_per_day" name="calls_per_day" value="{{ request.form.calls_per_day if request.form else '' }}" pattern="^\s*\d*\.?\d*\s*$" required>
+        <select name="calls_per_day_unit" id="calls_per_day_id">
+            <option value="day" {% if request.form.calls_per_day_unit == 'day' %}selected{% endif %}>day</option>
+            <option value="hour" {% if request.form.calls_per_day_unit == 'hour' %}selected{% endif %}>hour</option>
+            <option value="minute" {% if request.form.calls_per_day_unit == 'minute' %}selected{% endif %}>minute</option>
+            <option value="second" {% if request.form.calls_per_day_unit == 'second' %}selected{% endif %}>second</option>
+        </select><br>
+</div>
+
+<div class="label4">
+    <label for="call_duration">Average call duration:</label>
+        <input type="text" id="call_duration" name="call_duration" value="{{ request.form.call_duration if request.form else '' }}" pattern="^\s*\d*\.?\d*\s*$" required>
+        <select name="call_duration_unit" id="call_duration_id">
+            <option value="minute" {% if request.form.call_duration_unit == 'minute' %}selected{% endif %}>minute</option>
+            <option value="hour" {% if request.form.call_duration_unit == 'hour' %}selected{% endif %}>hour</option>
+            <option value="second" {% if request.form.call_duration_unit == 'second' %}selected{% endif %}>second</option>
+            <option value="day" {% if request.form.call_duration_unit == 'day' %}selected{% endif %}>day</option>
+        </select><br>
+ </div>
+<div class="label5">
+<label for="sir">Minimum SIR:</label>
+<input type="text" id="sir" name="sir" value="{{ request.form.sir if request.form else '' }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+
+<div class="radio-buttons">
+    <input type="radio" id="db" name="sir_unit" value="dB" {% if request.form.sir_unit == 'dB' %}checked{% endif %} required>
+    <label for="db">dB</label>
+
+    <input type="radio" id="watt" name="sir_unit" value="watt" {% if request.form.sir_unit == 'watt' %}checked{% endif %} >
+    <label for="watt">watt</label>
+</div>
+
+</div>
+
+   <div class="label6">
+   <label for="power_reference">Reference power:</label>
+<input type="text" id="power_reference" name="power_reference" value="{{ request.form.power_reference if request.form else '' }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+
+<div class="radio-buttons">
+    <input type="radio" id="power_reference_db" name="power_reference_unit" value="dB" {% if request.form.power_reference_unit == 'dB' %}checked{% endif %} required>
+    <label for="power_reference_db">dB</label>
+
+    <input type="radio" id="power_reference_watt" name="power_reference_unit" value="watt" {% if request.form.power_reference_unit == 'watt' %}checked{% endif %}>
+    <label for="power_reference_watt">watt</label>
+</div>
+
+</div>
+
+<div class="label7">
+    <label for="distance_reference">Reference distance:</label>
+<input type="text" id="distance_reference" name="distance_reference" value="{{ request.form.distance_reference if request.form else '' }}" pattern="^\s*\d*\.?\d*\s*$" required>
+
+<div class="radio-buttons">
+    <input type="radio" id="distance_reference_m" name="distance_reference_unit" value="m" {% if request.form.distance_reference_unit == 'm' %}checked{% endif %} required>
+    <label for="distance_reference_m">m</label>
+
+    <input type="radio" id="distance_reference_km" name="distance_reference_unit" value="km" {% if request.form.distance_reference_unit == 'km' %}checked{% endif %}>
+    <label for="distance_reference_km">km</label>
+</div>
+
+</div>
+
+<div class="label8">
+
+        <label for="path_loss_exponent">Path loss exponent:</label>
+        <input type="text" id="path_loss_exponent" name="path_loss_exponent" value="{{ request.form.path_loss_exponent if request.form else '' }}" pattern="^\s*\d+\s*$" required><br>
+
+</div>
+
+<div class="label9">
+    <label for="receiver_sensitivity">Receiver sensitivity:</label>
+    <input type="text" id="receiver_sensitivity" name="receiver_sensitivity" value="{{ request.form.receiver_sensitivity if request.form else '' }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <input type="radio" id="receiver_sensitivity_db" name="receiver_sensitivity_unit" value="dB" {% if request.form.receiver_sensitivity_unit == 'dB' %}checked{% endif %} required>
+        <label for="receiver_sensitivity_db">dB</label>
+
+        <input type="radio" id="receiver_sensitivity_watt" name="receiver_sensitivity_unit" value="watt" {% if request.form.receiver_sensitivity_unit == 'watt' %}checked{% endif %} required>
+        <label for="receiver_sensitivity_watt">watt</label>
+
+        <input type="radio" id="receiver_sensitivity_microwatt" name="receiver_sensitivity_unit" value="microwatt" {% if request.form.receiver_sensitivity_unit == 'microwatt' %}checked{% endif %}>
+        <label for="receiver_sensitivity_microwatt">µW</label>
+    </div>
+</div>
+
+
+<div class="label10">
+    <label for="gos">Probability of being blocked (GOS):</label>
+        <select id="gos" name="gos" required>
+            <option value="0.1" {% if request.form.gos == '0.1' %}selected{% endif %}>0.1%</option>
+            <option value="0.2" {% if request.form.gos == '0.2' %}selected{% endif %}>0.2%</option>
+            <option value="0.5" {% if request.form.gos == '0.5' %}selected{% endif %}>0.5%</option>
+            <option value="1.0" {% if request.form.gos == '1.0' %}selected{% endif %}>1%</option>
+            <option value="1.2" {% if request.form.gos == '1.2' %}selected{% endif %}>1.2%</option>
+            <option value="1.5" {% if request.form.gos == '1.5' %}selected{% endif %}>1.5%</option>
+            <option value="2.0" {% if request.form.gos == '2.0' %}selected{% endif %}>2%</option>
+            <option value="3.0" {% if request.form.gos == '3.0' %}selected{% endif %}>3%</option>
+            <option value="5.0" {% if request.form.gos == '5.0' %}selected{% endif %}>5%</option>
+
+
+
+        </select><br>
+</div>
+
+<div class="label11">
+     <label for="timeslots_per_carrier">Number of timeslots per carrier:</label>
+        <input type="text" id="timeslots_per_carrier" name="timeslots_per_carrier" value="{{ request.form.timeslots_per_carrier if request.form else '' }}" pattern="^\s*\d+\s*$" required><br>
+
+</div>
+        <button  class="calculateButton" type="submit"><p>Calculate</p></button>
+    </form>
+</div>
+<div class="AnswerBox">
+    <div class="Header">
+    <h1>
+        <strong>
+        <em>
+      Answer box:
+            </em>
+            </strong>
+    </h1>
+        </div>
+    <div class="results">
+    {% if results %}
+        <h2>Results</h2>
+        <ul>
+            {% for key, value in results.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+        </div>
+</div>
+    </div>
+</body>

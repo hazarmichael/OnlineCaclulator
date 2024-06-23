@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Question3</title>
+    <link href="../static/Question3Style.css " rel="stylesheet">
+
+</head>
+<body>
+
+<div class="NavBar">
+    <div class="title_logo">
+        <img class="logo" src="../static/images/signal-tower.png">
+        <h1>Question3: Transmit Power Calculator</h1>
+    </div>
+    </div>
+<div class="sideNav">
+
+    <ul>
+  <li>
+            <a class="Home" href="{{ url_for('operations') }}">
+            <img src="../static/images/home.png"><p>Home</p>
+            </a>
+        </li>
+
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question1') }}">
+            <img src="../static/images/number-1.png"><p>Question1</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav"  href="{{ url_for('question2') }}">
+            <img src="../static/images/number-2.png"><p>Question2</p>
+        </a>
+        </li>
+
+        <li>
+             <a class="linksSideNav"  href="{{ url_for('question3') }}">
+            <img src="../static/images/number-3.png"><p>Question3</p>
+             </a>
+        </li>
+
+        <li>
+                         <a class="linksSideNav"  href="{{ url_for('question4') }}">
+            <img src="../static/images/number-4.png"><p>Question4</p>
+                             </a>
+        </li>
+
+        <li>
+                                     <a class="linksSideNav"  href="{{ url_for('question5') }}">
+
+            <img src="../static/images/number-5.png"><p>Question5</p>
+                                          </a>
+        </li>
+
+    </ul>
+</div>
+<div class="container">
+<div class="inputBoxes">
+<form class="input_Label" action="{{ url_for('question3') }}" method="post">
+    <div class="label1">
+         <label for="L_p">Path Loss (L_p):</label>
+        <input type="text" id="L_p" name="L_p" value="{{ form_data.get('L_p', '') }}" pattern="^\s*-?\d*\.?\d*\s*$"  required>
+                <div class="radio-buttons">
+        <label>
+
+        <input type="radio" name="L_p_unit" value="dB" {% if form_data.get('L_p_unit') == 'dB' %}checked{% endif %} required>
+        dB
+    </label>
+
+    <label>
+        <input type="radio" name="L_p_unit" value="watt" {% if form_data.get('L_p_unit') == 'watt' %}checked{% endif %}>
+        watt
+    </label>
+            </div><br>
+            </div>
+    <div class="label2">
+    <label for="G_t">Transmit Antenna Gain (G_t):</label>
+        <div class="input_radio">
+    <input type="text" id="G_t" name="G_t" value="{{ form_data.get('G_t', '') }}" pattern="^\s*-?\d*\.?\d*\s*$"  required>
+        <div class="radio-buttons">
+
+    <label>
+        <input type="radio" name="G_t_unit" value="dB" {% if form_data.get('G_t_unit') == 'dB' %}checked{% endif %} required>
+        dB
+    </label>
+
+    <label>
+        <input type="radio" name="G_t_unit" value="watt" {% if form_data.get('G_t_unit') == 'watt' %}checked{% endif %}>
+        watt
+    </label>
+    </div><br>
+            </div>
+</div>
+
+    <div class="label3">
+    <label for="G_r">Receive Antenna Gain (G_r):</label>
+    <input type="text" id="G_r" name="G_r" value="{{ form_data.get('G_r', '') }}" pattern="^\s*-?\d*\.?\d*\s*$"  required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="G_r_unit" value="dB" {% if form_data.get('G_r_unit') == 'dB' %}checked{% endif %} required>
+            dB
+        </label>
+
+        <label>
+            <input type="radio" name="G_r_unit" value="watt" {% if form_data.get('G_r_unit') == 'watt' %}checked{% endif %}>
+            watt
+        </label>
+    </div>
+    <br>
+</div>
+
+<div class="label4">
+    <label for="R">Data Rate (R):</label>
+    <input type="text" id="R" name="R" value="{{ form_data.get('R', '') }}" pattern="^\s*\d*\.?\d*\s*$"  required>
+  <select id="R_sel" name="R_unit">
+            <option value="bps" {% if form_data.get('R_unit') == 'bps' %}selected{% endif %}>bps</option>
+            <option value="kbps" {% if form_data.get('R_unit') == 'kbps' %}selected{% endif %}>kbps</option>
+            <option value="Mbps" {% if form_data.get('R_unit') == 'Mbps' %}selected{% endif %}>Mbps</option>
+  </select><br>
+ </div>
+<div class="label5">
+<label for="L_o">Feed Line Loss (L_o):</label>
+        <input type="text" id="L_o" name="L_o" value="{{ form_data.get('L_o', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="L_o_unit" value="dB" {% if form_data.get('L_o_unit') == 'dB' %}checked{% endif %} required>
+            dB
+        </label>
+
+        <label>
+            <input type="radio" name="L_o_unit" value="watt" {% if form_data.get('L_o_unit') == 'watt' %}checked{% endif %}>
+            watt
+        </label>
+    </div>
+    <br>
+</div>
+
+   <div class="label6">
+    <label for="L_f">Other Losses (L_f):</label>
+    <input type="text" id="L_f" name="L_f" value="{{ form_data.get('L_f', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="L_f_unit" value="dB" {% if form_data.get('L_f_unit') == 'dB' %}checked{% endif %} required>
+            dB
+        </label>
+        <label>
+            <input type="radio" name="L_f_unit" value="watt" {% if form_data.get('L_f_unit') == 'watt' %}checked{% endif %}>
+            watt
+        </label>
+    </div>
+    <br>
+</div>
+
+<div class="label7">
+    <label for="F_margin">Fade Margin (F_margin):</label>
+    <input type="text" id="F_margin" name="F_margin" value="{{ form_data.get('F_margin', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="F_margin_unit" value="dB" {% if form_data.get('F_margin_unit') == 'dB' %}checked{% endif %} required>
+            dB
+        </label>
+        <label>
+            <input type="radio" name="F_margin_unit" value="watt" {% if form_data.get('F_margin_unit') == 'watt' %}checked{% endif %}>
+            watt
+        </label>
+    </div>
+    <br>
+</div>
+
+<div class="label8">
+    <label for="A_t">Transmitter Amplifier Gain (A_t):</label>
+    <input type="text" id="A_t" name="A_t" value="{{ form_data.get('A_t', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="A_t_unit" value="dB" {% if form_data.get('A_t_unit') == 'dB' %}checked{% endif %} required>
+            dB
+        </label>
+        <label>
+            <input type="radio" name="A_t_unit" value="watt" {% if form_data.get('A_t_unit') == 'watt' %}checked{% endif %}>
+            watt
+        </label>
+    </div>
+    <br>
+</div>
+
+<div class="label9">
+    <label for="A_r">Receiver Amplifier Gain (A_r):</label>
+    <input type="text" id="A_r" name="A_r" value="{{ form_data.get('A_r', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="A_r_unit" value="dB" {% if form_data.get('A_r_unit') == 'dB' %}checked{% endif %} required>
+            dB
+        </label>
+        <label>
+            <input type="radio" name="A_r_unit" value="watt" {% if form_data.get('A_r_unit') == 'watt' %}checked{% endif %}>
+            watt
+        </label>
+    </div>
+    <br>
+</div>
+
+<div class="label10">
+    <label for="N_f">Noise Figure Total (N_f):</label>
+    <input type="text" id="N_f" name="N_f" value="{{ form_data.get('N_f', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <label>
+            <input type="radio" name="N_f_unit" value="dB" {% if form_data.get('N_f_unit') == 'dB' %}checked{% endif %} required>
+            dB
+        </label>
+        <label>
+            <input type="radio" name="N_f_unit" value="watt" {% if form_data.get('N_f_unit') == 'watt' %}checked{% endif %}>
+            watt
+        </label>
+    </div>
+    <br>
+</div>
+
+<div class="label11">
+    <label for="T">Noise Temperature (T in K):</label>
+    <input type="text" id="T" name="T" value="{{ form_data.get('T', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <br>
+</div>
+
+<div class="label12">
+    <label for="M">Link Margin (M):</label>
+    <input type="text" id="M" name="M" value="{{ form_data.get('M', '') }}" pattern="^\s*-?\d*\.?\d*\s*$" required>
+    <div class="radio-buttons">
+        <input type="radio" id="dB" name="M_unit" value="dB" {% if form_data.get('M_unit') == 'dB' %}checked{% endif %} required>
+        <label for="dB">dB</label>
+        <input type="radio" id="watt" name="M_unit" value="watt" {% if form_data.get('M_unit') == 'watt' %}checked{% endif %}>
+        <label for="watt">watt</label>
+    </div>
+</div>
+
+
+     <div class="label13">
+<label for="modulation_type">Type of Modulation:</label>
+        <select id="modulation_type" name="modulation_type" required>
+            <option value="BPSK/QPSK" {% if form_data.get('modulation_type') == 'BPSK/QPSK' %}selected{% endif %}>BPSK/QPSK</option>
+            <option value="8-PSK" {% if form_data.get('modulation_type') == '8-PSK' %}selected{% endif %}>8-PSK</option>
+            <option value="16-PSK" {% if form_data.get('modulation_type') == '16-PSK' %}selected{% endif %}>16-PSK</option>
+        </select><br>
+       </div>
+
+      <div class="label14">
+<label for="ber">Maximum Bit Error Rate (BER):</label>
+        <select id="ber" name="ber" required>
+            <option value="1e-1" {% if form_data.get('ber') == '1e-1' %}selected{% endif %}>10^-1</option>
+            <option value="1e-2" {% if form_data.get('ber') == '1e-2' %}selected{% endif %}>10^-2</option>
+            <option value="1e-3" {% if form_data.get('ber') == '1e-3' %}selected{% endif %}>10^-3</option>
+            <option value="1e-4" {% if form_data.get('ber') == '1e-4' %}selected{% endif %}>10^-4</option>
+            <option value="1e-5" {% if form_data.get('ber') == '1e-5' %}selected{% endif %}>10^-5</option>
+            <option value="1e-6" {% if form_data.get('ber') == '1e-6' %}selected{% endif %}>10^-6</option>
+            <option value="1e-7" {% if form_data.get('ber') == '1e-7' %}selected{% endif %}>10^-7</option>
+            <option value="1e-8" {% if form_data.get('ber') == '1e-8' %}selected{% endif %}>10^-8</option>
+        </select><br>
+       </div>
+
+
+        <button  class="calculateButton" type="submit"><p>Calculate</p></button>
+    </form>
+</div>
+<div class="AnswerBox">
+    <div class="Header">
+    <h1>
+        <strong>
+        <em>
+      Answer box:
+            </em>
+            </strong>
+    </h1>
+        </div>
+    <div class="results">
+    {% if results %}
+        <h2>Results</h2>
+        <ul>
+            {% for key, value in results.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+        </div>
+</div>
+    </div>
+</body>

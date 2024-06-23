@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Question1</title>
+    <link href="../static/Question1Style.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="NavBar">
+    <div class="title_logo">
+        <img class="logo" src="../static/images/signal-tower.png">
+        <h1>Question1: Calculate bits for Digital Communication System </h1>
+    </div>
+</div>
+
+<div class="sideNav">
+    <ul>
+        <li>
+            <a class="Home" href="{{ url_for('operations') }}">
+                <img src="../static/images/home.png"><p>Home</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question1') }}">
+                <img src="../static/images/number-1.png"><p>Question1</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question2') }}">
+                <img src="../static/images/number-2.png"><p>Question2</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question3') }}">
+                <img src="../static/images/number-3.png"><p>Question3</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question4') }}">
+                <img src="../static/images/number-4.png"><p>Question4</p>
+            </a>
+        </li>
+        <li>
+            <a class="linksSideNav" href="{{ url_for('question5') }}">
+                <img src="../static/images/number-5.png"><p>Question5</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="inputBoxes">
+        <form class="input_Label" action="{{ url_for('question1') }}" method="post">
+            <div class="label1">
+                <label for="signal_bandwidth">Signal Bandwidth:</label>
+                <input type="text" id="signal_bandwidth" name="signal_bandwidth" required value="{{ request.form['signal_bandwidth'] if request.method == 'POST' else '' }}" pattern="^\s*\d*\.?\d*\s*$">
+                <div class="radio-buttons">
+                    <input type="radio" id="signal_bandwidth_khz" name="signal_bandwidth_unit" value="kHz" {% if request.form.get('signal_bandwidth_unit') == 'kHz' %}checked{% endif %} required>
+                    <label for="signal_bandwidth_khz">kHz</label>
+                    <input type="radio" id="signal_bandwidth_hz" name="signal_bandwidth_unit" value="Hz" {% if request.form.get('signal_bandwidth_unit') == 'Hz' %}checked{% endif %} required>
+                    <label for="signal_bandwidth_hz">Hz</label>
+                </div><br>
+            </div>
+            <div class="label2">
+                <label for="number_of_quantizer_bits">Number of Quantizer Bits:</label>
+                <input type="text" id="number_of_quantizer_bits" name="number_of_quantizer_bits" required value="{{ request.form['number_of_quantizer_bits'] if request.method == 'POST' else '' }} " pattern="^\s*\d+\s*$"><br>
+            </div>
+            <div class="label3">
+                <label for="source_encoder_compression_rate">Source Encoder Compression Rate:</label>
+                <input type="text" id="source_encoder_compression_rate" name="source_encoder_compression_rate" required value="{{ request.form['source_encoder_compression_rate'] if request.method == 'POST' else '' }}" pattern="^\s*\d*\.?\d*\s*$"><br>
+            </div>
+            <div class="label4">
+                <label for="channel_encoder_rate">Channel Encoder Rate:</label>
+                <input type="text" id="channel_encoder_rate" name="channel_encoder_rate" required value="{{ request.form['channel_encoder_rate'] if request.method == 'POST' else '' }}" pattern="\s*\d*\.?\d*\s*$"><br>
+            </div>
+            <div class="label5">
+                <label for="interleaver_number_of_bits">Interleaver Number of Bits:</label>
+                <input type="text" id="interleaver_number_of_bits" name="interleaver_number_of_bits" required value="{{ request.form['interleaver_number_of_bits'] if request.method == 'POST' else '' }}" pattern="^\s*\d+\s*$"><br>
+            </div>
+            <button class="calculateButton" type="submit"><p>Calculate</p></button>
+        </form>
+    </div>
+
+    <div class="AnswerBox">
+        <div class="Header">
+            <h1><strong><em>Answer box:</em></strong></h1>
+        </div>
+        <div class="results">
+            {% if results %}
+                <h2>Results</h2>
+                <ul>
+                    {% for key, value in results.items() %}
+                        <li><strong>{{ key }}:</strong> {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            {% elif error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

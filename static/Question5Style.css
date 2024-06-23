@@ -1,0 +1,472 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: Arial, serif;
+
+}
+body {
+background: url("../static/images/TEST.jpg") repeat;
+    background-size: 600px;
+}
+
+
+.NavBar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #B8CCDD;
+    height: 70px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    box-shadow: 10px 10px 10px #244667;
+    border-radius: 0 0 20px 20px;
+
+
+}
+.sideNav{
+    width: 90px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 30px 15px;
+    background: #B8CCDD;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    transition: width 0.5s;
+}
+.linksSideNav{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+.Home{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+
+
+.sideNav ul{
+   list-style: none;
+    padding: 0 35px;
+}
+
+.sideNav ul li{
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.sideNav ul li img{
+    margin-right: 10px;
+}
+.sideNav ul li p{
+    white-space: nowrap;
+    display: none;
+    color: #42678B;
+}
+.linksSideNav p {
+    display: inline;
+    margin-top: 3px;
+    font-size: 17px;
+}
+.Home p {
+        display: inline;
+        margin-top: 9px;
+        font-size: 17px;
+    margin-right: 31px;
+
+}
+.sideNav:hover{
+    width: 220px;
+}
+.sideNav:hover ul li p{
+    display: block;
+}
+.sideNav:hover ul li img{
+    margin-right:10px ;
+}
+
+
+
+.title_logo{
+    display: flex;
+    flex-direction: row;
+}
+.title_logo h1{
+    font-size: 29px;
+         color: #42678B;
+    margin-left: 18px;
+margin-top: 8px;
+}
+.title_logo img{
+    margin-left: 15em;
+}
+
+.inputBoxes{
+    margin-top: 5em;
+    margin-left: 15em;
+}
+
+.label1{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+     display:flex;
+    flex-direction: row;
+
+
+}
+
+.label1 input[type="text"]  {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width:5em;
+    margin-left: 6px;
+    margin-right: 9px;
+
+
+}
+.label2{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+    display:flex;
+    flex-direction: row;
+}
+.label2 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+.label3{
+     margin-bottom: 15px;
+    display:flex;
+    flex-direction: row;
+    color: #42678B;
+    font-size: 15px;
+
+
+}
+.label3 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+.label4{
+    display:flex;
+    flex-direction: row;
+   margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+
+}
+.label4 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+.label5{
+     margin-bottom: 15px;
+    display:flex;
+    flex-direction: row;
+    color: #42678B;
+    font-size: 15px;
+
+}
+.label5 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+.label6{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+    display:flex;
+    flex-direction: row;
+
+}
+.label6 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+
+.label7{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+    display:flex;
+    flex-direction: row;
+
+}
+.label7 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+
+.label8{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+    display:flex;
+    flex-direction: row;
+
+}
+.label8 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+
+.label9{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+    display:flex;
+    flex-direction: row;
+
+}
+.label9 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+}
+
+.label10{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+    display:flex;
+    flex-direction: row;
+
+}
+.label10 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+
+}
+.label11{
+     margin-bottom: 15px;
+    color: #42678B;
+    font-size: 15px;
+    display:flex;
+    flex-direction: row;
+
+}
+.label11 input[type="text"] {
+     border-radius: 10px;
+    border-color: #42678B;
+    background: #D8E8F2;
+    color: #42678B;
+    padding-left: 5px;
+    width: 5em;
+    margin-left: 6px;
+    margin-right: 6px;
+
+
+}
+
+.calculateButton {
+    background: 5px #244667;
+            color: #D8E8F2;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 14px;
+    border-style: none;
+    width: 16em;
+}
+.calculateButton p{
+margin-bottom: 15px;
+}
+.calculateButton:hover {
+    background: #B8CCDD;
+    color: #42678B;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.AnswerBox{
+    background: #B8CCDD;
+    width: 40em;
+    height: 25em;
+    margin-top: 5em;
+    margin-left: 5em;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.Header{
+    color: #42678B;
+}
+.results{
+    margin-left: 15px;
+    margin-top: 10px;
+    color: #42678B;
+}
+.results ul{
+    margin-top: 10px;
+   margin-bottom: 10px;
+}
+.results ul li{
+   margin-bottom: 15px;
+}
+.radio-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0; /* No gap between items */
+}
+
+.radio-buttons input[type="radio"] {
+    width: 20px;
+    padding: 0;
+    accent-color: #244667; /* Changes the color of the radio button */
+    border-style: none;
+}
+
+.radio-buttons label {
+    margin: 0 5px 0 0; /* Add small space to the right */
+    padding: 0; /* Remove padding */
+    color: #42678B; /* Changes the color of the label text */
+    display: inline-block; /* Ensure label is inline with radio button */
+}
+
+/* Optional: Hover effect for radio buttons */
+.radio-buttons input[type="radio"]:hover {
+    accent-color: #B8CCDD;
+}
+
+/* Optional: Hover effect for labels */
+.radio-buttons label:hover {
+    color: #244667;
+}
+
+/* Styling for select dropdown */
+select#calls_per_day_id {
+    padding: 1px;
+    border-radius: 25px;
+    background-color: #D8E8F2;
+    border: 1px solid #42678B;
+    color: #42678B;
+    font-size: 16px;
+    width: 80px;
+    outline: none;
+        height: 23px;
+
+}
+
+/* Styling for options inside dropdown */
+select#calls_per_day_id option {
+    background-color: #D8E8F2; /* Match dropdown background */
+    color: #42678B; /* Match font color */
+}
+
+
+/* Styling for select dropdown */
+select#call_duration_id {
+    padding: 1px;
+    border-radius: 25px;
+    background-color: #D8E8F2;
+    border: 1px solid #42678B;
+    color: #42678B;
+    font-size: 16px;
+    width: 80px;
+        height: 23px;
+
+    outline: none;
+}
+
+/* Styling for options inside dropdown */
+select#call_duration_id option {
+    background-color: #D8E8F2; /* Match dropdown background */
+    color: #42678B; /* Match font color */
+}
+
+/* Styling for select dropdown */
+select#gos {
+    padding: 2px;
+    border-radius: 25px;
+    background-color: #D8E8F2;
+    border: 1px solid #42678B;
+    color: #42678B;
+    font-size: 16px;
+    width: 65px;
+    height: 23px;
+    outline: none;
+    margin-left: 10px;
+
+}
+
+/* Styling for options inside dropdown */
+select#gos option {
+   background-color: #D8E8F2;
+    color: #42678B;
+}
